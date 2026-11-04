@@ -122,10 +122,6 @@ ngrok crea un enlace público temporal hacia tu Apache local, para abrir el siti
 5. La primera vez, ngrok muestra una página de aviso. Presiona **Visit Site**.
 6. Para terminar, presiona `Ctrl + C` en la ventana de ngrok. El enlace cambia cada vez que lo vuelves a ejecutar.
 
-> **Precaución:** mientras ngrok está activo, cualquiera que tenga el enlace puede abrir todo lo que sirve tu Apache, **incluido phpMyAdmin**. Ngrok reenvía el tráfico desde tu propia PC, así que XAMPP lo trata como local. Mantenlo abierto solo mientras pruebas o presentas, y no publiques el enlace.
-
-Todas las rutas del sitio son relativas, por eso funciona igual en `localhost` y en ngrok.
-
 
 ## Seguridad aplicada
 
