@@ -21,8 +21,6 @@ Relación con MVC:
 | Controlador | `paginas/guardar_mensaje.php` y `paginas/mensajes.php` |
 | Modelo | `php/conexion.php` y la tabla `mensajes` en MySQL |
 
-> La versión solo HTML de la práctica anterior sigue publicada en GitHub Pages. **GitHub Pages no ejecuta PHP**, por eso esta versión se ejecuta en XAMPP.
-
 ### Diseño
 
 El sitio tiene el aspecto de una página de tutoriales: una cabecera blanca con el logo y un botón para escribir, una franja oscura con todas las secciones, un menú lateral gris con la página actual marcada en verde, el contenido en recuadros y botones verdes de **Anterior** y **Siguiente** para recorrer las páginas en orden. En el celular el menú lateral se oculta y queda solo la franja oscura.
@@ -31,7 +29,6 @@ El sitio tiene el aspecto de una página de tutoriales: una cabecera blanca con 
 
 - [XAMPP](https://www.apachefriends.org/) con **Apache**, **MySQL/MariaDB** y **PHP 8** (las extensiones `mysqli` y `mbstring` ya vienen activadas en XAMPP).
 - Un navegador web actualizado (Chrome, Edge o Firefox).
-- Opcional, para acceder desde internet: una cuenta gratuita de [ngrok](https://ngrok.com/).
 
 ## Estructura del proyecto
 
@@ -100,28 +97,6 @@ const DB_PUERTO   = 3306;
 ```
 
 Si tu MySQL tiene otra contraseña o usa otro puerto (por ejemplo `3307`), cámbialo ahí. No subas al repositorio contraseñas personales.
-
-## Ejecución mediante ngrok
-
-ngrok crea un enlace público temporal hacia tu Apache local, para abrir el sitio desde otro dispositivo o red.
-
-1. Crea una cuenta gratuita en [ngrok.com](https://ngrok.com/), descarga ngrok para Windows y descomprímelo.
-2. Configura tu token una sola vez (está en el panel de ngrok, sección *Your Authtoken*):
-   ```
-   ngrok config add-authtoken TU_TOKEN
-   ```
-3. Con **Apache y MySQL encendidos** en XAMPP, ejecuta:
-   ```
-   ngrok http 80
-   ```
-   Si tu Apache usa otro puerto (por ejemplo `8080`), usa ese número.
-4. Copia la dirección de la línea **Forwarding** y agrégale el nombre de la carpeta:
-   ```
-   https://xxxx-xxxx.ngrok-free.app/Deber1/
-   ```
-5. La primera vez, ngrok muestra una página de aviso. Presiona **Visit Site**.
-6. Para terminar, presiona `Ctrl + C` en la ventana de ngrok. El enlace cambia cada vez que lo vuelves a ejecutar.
-
 
 ## Seguridad aplicada
 
