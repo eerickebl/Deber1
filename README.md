@@ -1,0 +1,151 @@
+# Mundo Fútbol: sitio web con formulario de contacto
+
+Sitio web sobre fútbol hecho con **HTML5 y CSS**, con un **formulario de contacto** que guarda los mensajes en una base de datos **MySQL** mediante **PHP**, y una página que los consulta.
+
+- **Autor:** Erick Bermeo ([ebermeol1@est.ups.edu.ec](mailto:ebermeol1@est.ups.edu.ec))
+- **Asignatura:** Programación y Plataformas Web, Universidad Politécnica Salesiana (sede Cuenca)
+
+## Descripción
+
+El sitio tiene cinco páginas informativas (Inicio, Historia, Reglas, Posiciones y Mundiales) y dos funciones dinámicas:
+
+1. **Contacto** (`paginas/contacto.html`): el usuario escribe su nombre completo, su correo, un asunto y un mensaje. Los datos se envían por **POST**.
+2. **Guardar mensaje** (`paginas/guardar_mensaje.php`): valida los datos en el servidor y los guarda con una **consulta preparada de MySQLi**. La confirmación aparece solo si el registro se guardó.
+3. **Mensajes** (`paginas/mensajes.php`): consulta la base de datos y muestra todos los mensajes en una tabla HTML. Si no hay registros, lo informa.
+
+Relación con MVC:
+
+| Componente | Archivo |
+|---|---|
+| Vista | `paginas/contacto.html` y las páginas HTML |
+| Controlador | `paginas/guardar_mensaje.php` y `paginas/mensajes.php` |
+| Modelo | `php/conexion.php` y la tabla `mensajes` en MySQL |
+
+> La versión solo HTML de la práctica anterior sigue publicada en GitHub Pages. **GitHub Pages no ejecuta PHP**, por eso esta versión se ejecuta en XAMPP.
+
+### Diseño
+
+El sitio tiene el aspecto de una página de tutoriales: una cabecera blanca con el logo y un botón para escribir, una franja oscura con todas las secciones, un menú lateral gris con la página actual marcada en verde, el contenido en recuadros y botones verdes de **Anterior** y **Siguiente** para recorrer las páginas en orden. En el celular el menú lateral se oculta y queda solo la franja oscura.
+
+## Requisitos
+
+- [XAMPP](https://www.apachefriends.org/) con **Apache**, **MySQL/MariaDB** y **PHP 8** (las extensiones `mysqli` y `mbstring` ya vienen activadas en XAMPP).
+- Un navegador web actualizado (Chrome, Edge o Firefox).
+- Opcional, para acceder desde internet: una cuenta gratuita de [ngrok](https://ngrok.com/).
+
+## Estructura del proyecto
+
+```
+mundo-futbol/
+├── index.html                  Página principal
+├── README.md
+├── css/
+│   └── estilos.css             Hoja de estilos externa (todas las páginas)
+├── images/                     Las 5 ilustraciones del sitio
+├── paginas/
+│   ├── historia.html
+│   ├── reglas.html
+│   ├── posiciones.html
+│   ├── mundiales.html          Tabla, listas y video (iframe)
+│   ├── contacto.html           Formulario de contacto (Vista)
+│   ├── guardar_mensaje.php     Validación y almacenamiento (Controlador)
+│   └── mensajes.php            Consulta de mensajes
+├── php/
+│   └── conexion.php            Datos y función de conexión (Modelo)
+├── database/
+│   └── mundo_futbol.sql        Script para crear la base de datos
+└── pruebas/
+    └── datos_prueba.txt        Datos ficticios para los casos P1–P8
+```
+
+## Base de datos
+
+Base de datos `mundo_futbol` (utf8mb4) con la tabla `mensajes`:
+
+| Campo | Tipo | Restricciones |
+|---|---|---|
+| `id` | `INT UNSIGNED` | `PRIMARY KEY`, `AUTO_INCREMENT` |
+| `nombre_completo` | `VARCHAR(100)` | `NOT NULL`, no vacío (`CHECK`) |
+| `correo` | `VARCHAR(150)` | `NOT NULL`, debe contener `@` y un punto (`CHECK`) |
+| `asunto` | `VARCHAR(150)` | `NOT NULL`, no vacío (`CHECK`) |
+| `mensaje` | `VARCHAR(2000)` | `NOT NULL`, no vacío (`CHECK`) |
+| `fecha_registro` | `DATETIME` | `NOT NULL`, `DEFAULT CURRENT_TIMESTAMP`, índice |
+
+## Instalación y ejecución en XAMPP
+
+1. **Copia el proyecto** a la carpeta `htdocs` de XAMPP:
+   ```
+   C:\xampp\htdocs\mundo-futbol\
+   ```
+2. **Inicia los servicios:** abre el *XAMPP Control Panel* y presiona **Start** en **Apache** y en **MySQL**.
+3. **Crea la base de datos:**
+   1. Abre `http://localhost/phpmyadmin`.
+   2. Entra a la pestaña **Importar**.
+   3. Selecciona el archivo `database/mundo_futbol.sql` y presiona **Importar** (o **Continuar**).
+   4. Verifica que aparezca la base de datos `mundo_futbol` con la tabla `mensajes`.
+4. **Abre el sitio:**
+   ```
+   http://localhost/mundo-futbol/
+   ```
+5. **Prueba el formulario:** entra a **Contacto**, envía un mensaje y revísalo en **Mensajes**.
+
+### Configuración de la conexión
+
+Los datos de conexión están en `php/conexion.php` y usan los valores por defecto de XAMPP:
+
+```php
+const DB_SERVIDOR = 'localhost';
+const DB_USUARIO  = 'root';
+const DB_CLAVE    = '';
+const DB_NOMBRE   = 'mundo_futbol';
+const DB_PUERTO   = 3306;
+```
+
+Si tu MySQL tiene otra contraseña o usa otro puerto (por ejemplo `3307`), cámbialo ahí. No subas al repositorio contraseñas personales.
+
+## Ejecución mediante ngrok
+
+ngrok crea un enlace público temporal hacia tu Apache local, para abrir el sitio desde otro dispositivo o red.
+
+1. Crea una cuenta gratuita en [ngrok.com](https://ngrok.com/), descarga ngrok para Windows y descomprímelo.
+2. Configura tu token una sola vez (está en el panel de ngrok, sección *Your Authtoken*):
+   ```
+   ngrok config add-authtoken TU_TOKEN
+   ```
+3. Con **Apache y MySQL encendidos** en XAMPP, ejecuta:
+   ```
+   ngrok http 80
+   ```
+   Si tu Apache usa otro puerto (por ejemplo `8080`), usa ese número.
+4. Copia la dirección de la línea **Forwarding** y agrégale el nombre de la carpeta:
+   ```
+   https://xxxx-xxxx.ngrok-free.app/mundo-futbol/
+   ```
+5. La primera vez, ngrok muestra una página de aviso. Presiona **Visit Site**.
+6. Para terminar, presiona `Ctrl + C` en la ventana de ngrok. El enlace cambia cada vez que lo vuelves a ejecutar.
+
+> **Precaución:** mientras ngrok está activo, cualquiera que tenga el enlace puede abrir todo lo que sirve tu Apache, **incluido phpMyAdmin**. Ngrok reenvía el tráfico desde tu propia PC, así que XAMPP lo trata como local. Mantenlo abierto solo mientras pruebas o presentas, y no publiques el enlace.
+
+Todas las rutas del sitio son relativas, por eso funciona igual en `localhost` y en ngrok.
+
+## Pruebas (P1–P8)
+
+El archivo `pruebas/datos_prueba.txt` contiene:
+
+- los tres mensajes válidos para **P4**,
+- los correos inválidos para **P6**,
+- los textos con un carácter de más para **P7** (nombre 101, correo 151, asunto 151 y mensaje 2001 caracteres),
+- la línea que se pega en la **Consola** del navegador (F12) para desactivar temporalmente `required`, `type="email"` y `maxlength`, y así comprobar que **PHP** también rechaza los datos.
+
+Para repetir las pruebas desde cero (P3 necesita la tabla vacía), ejecuta en phpMyAdmin, pestaña SQL:
+
+```sql
+TRUNCATE TABLE mundo_futbol.mensajes;
+```
+
+## Seguridad aplicada
+
+- **Consultas preparadas** (`prepare` y `bind_param`): los datos nunca se pegan dentro del SQL, lo que evita la inyección SQL.
+- **`htmlspecialchars`** al imprimir: si alguien escribe etiquetas HTML, se muestran como texto y no se ejecutan.
+- **Validación doble:** en el navegador (`required`, `type="email"` y `maxlength`) y en el servidor con PHP, que es la que realmente protege. Además, la base de datos tiene restricciones `CHECK`.
+- **Errores controlados:** si MySQL falla, el usuario ve un mensaje comprensible y nunca una confirmación falsa.

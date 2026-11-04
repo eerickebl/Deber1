@@ -1,0 +1,656 @@
+:root {
+    --verde: #04aa6d;
+    --verde-oscuro: #038a58;
+    --oscuro: #282a35;
+    --gris: #e7e9eb;
+    --gris-medio: #cccccc;
+    --gris-texto: #555b66;
+    --borde: #dddddd;
+    --celeste: #e7f3ff;
+    --nota: #fff4a3;
+    --blanco: #ffffff;
+    --texto: #222222;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: var(--blanco);
+    color: var(--texto);
+    font-family: "Segoe UI", "Source Sans Pro", Verdana, Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--verde-oscuro);
+}
+
+a:hover {
+    color: var(--texto);
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 12px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: 1.9rem;
+}
+
+h2 {
+    font-size: 2.1rem;
+    font-weight: 400;
+}
+
+h3 {
+    font-size: 1.35rem;
+}
+
+p {
+    margin: 0 0 14px;
+}
+
+
+.contenedor {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px 24px;
+    padding: 12px 24px;
+    background-color: var(--blanco);
+}
+
+.cabecera h1 {
+    margin: 0;
+}
+
+.cabecera h1 a {
+    color: var(--verde);
+    text-decoration: none;
+}
+
+.cabecera p {
+    flex: 1;
+    margin: 0;
+    color: var(--gris-texto);
+}
+
+.cuerpo {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 0;
+}
+
+.menu {
+    flex: 0 0 250px;
+}
+
+.menu ul {
+    position: sticky;
+    top: 0;
+}
+
+.contenido {
+    flex: 1;
+    min-width: 0;
+}
+
+
+.menu {
+    padding: 16px 0;
+    background-color: var(--gris);
+    border-right: 1px solid var(--borde);
+}
+
+.contenido {
+    padding: 28px 48px 36px;
+}
+
+.contenido section {
+    margin-bottom: 36px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--borde);
+}
+
+.contenido article {
+    margin-bottom: 20px;
+}
+
+.contenido p,
+.contenido li {
+    max-width: 75ch;
+}
+
+.contenido .pasos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    max-width: none;
+    margin: 28px 0;
+}
+
+.contenido .pasos:first-child {
+    margin-top: 0;
+}
+
+.pasos .boton:not(.secundario) {
+    margin-left: auto;
+}
+
+#bienvenida {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+}
+
+#bienvenida .intro {
+    flex: 1 1 340px;
+    padding: 32px;
+}
+
+#bienvenida figure {
+    flex: 1 1 340px;
+    max-width: none;
+    margin: 0;
+    padding: 32px;
+    background-color: var(--celeste);
+}
+
+aside {
+    margin-top: 8px;
+    padding: 18px 24px 6px;
+    background-color: var(--nota);
+    border-left: 6px solid #e6c700;
+    border-radius: 4px;
+}
+
+aside h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+
+.barra {
+    background-color: var(--oscuro);
+}
+
+.barra ul {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0 12px;
+    list-style-type: none;
+}
+
+.barra a {
+    display: block;
+    padding: 10px 18px;
+    color: var(--blanco);
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+}
+
+.barra a:hover {
+    background-color: #000000;
+    color: var(--blanco);
+}
+
+.barra a.actual {
+    background-color: var(--verde);
+}
+
+.menu p {
+    margin: 0 0 8px;
+    padding: 0 20px;
+    color: var(--gris-texto);
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu a {
+    display: block;
+    padding: 7px 20px 7px 28px;
+    background-color: var(--gris);
+    color: var(--texto);
+    border-left: 4px solid transparent;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    background-color: var(--gris-medio);
+    color: #000000;
+}
+
+.menu a:active {
+    background-color: var(--verde);
+    color: var(--blanco);
+}
+
+.menu a.actual {
+    background-color: var(--gris-medio);
+    border-left-color: var(--verde);
+    font-weight: 600;
+}
+
+
+.tarjetas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    gap: 20px;
+}
+
+.tarjeta {
+    flex: 0 1 calc(25% - 15px);
+    min-width: 190px;
+    display: flex;
+    flex-direction: column;
+    padding: 18px;
+    background-color: #f3f4f6;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+}
+
+.tarjetas .tarjeta {
+    margin-bottom: 0;
+}
+
+.tarjeta img {
+    width: 100%;
+    margin-bottom: 14px;
+    border-radius: 6px;
+}
+
+.tarjeta p {
+    font-size: 0.95rem;
+}
+
+.tarjeta .dorsal {
+    margin-bottom: 6px;
+    color: var(--verde);
+    font-size: 3.4rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.tarjeta .nota {
+    margin-top: auto;
+    margin-bottom: 0;
+    color: var(--gris-texto);
+    font-style: italic;
+}
+
+.acciones {
+    margin-top: auto;
+    margin-bottom: 0;
+}
+
+.boton {
+    display: inline-block;
+    margin: 0 8px 8px 0;
+    padding: 9px 22px;
+    background-color: var(--verde);
+    color: var(--blanco);
+    border: 2px solid var(--verde);
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.boton:hover {
+    background-color: var(--verde-oscuro);
+    border-color: var(--verde-oscuro);
+    color: var(--blanco);
+}
+
+.boton:active {
+    background-color: var(--oscuro);
+    border-color: var(--oscuro);
+}
+
+.secundario {
+    background-color: var(--blanco);
+    color: var(--texto);
+    border-color: var(--texto);
+}
+
+.secundario:hover {
+    background-color: var(--gris);
+    border-color: var(--texto);
+    color: var(--texto);
+}
+
+.cabecera .boton,
+.pasos .boton {
+    margin: 0;
+}
+
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+figure {
+    max-width: 480px;
+    margin: 24px 0;
+}
+
+figure img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+figcaption {
+    margin-top: 8px;
+    color: var(--gris-texto);
+    font-size: 0.95rem;
+}
+
+a img {
+    border: 3px solid transparent;
+}
+
+a:hover img {
+    border-color: var(--verde);
+}
+
+.contenido ul {
+    padding-left: 1.4em;
+    list-style-type: square;
+}
+
+.contenido ol {
+    padding-left: 1.8em;
+    list-style-type: decimal;
+}
+
+.contenido li {
+    margin-bottom: 6px;
+}
+
+.contenido li::marker {
+    color: var(--verde);
+    font-weight: 700;
+}
+
+.video {
+    display: block;
+    width: 100%;
+    max-width: 680px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border: 0;
+    border-radius: 8px;
+}
+
+
+.tabla-desplazable {
+    overflow-x: auto;
+    margin-bottom: 18px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px 14px;
+    border: 1px solid var(--borde);
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background-color: var(--verde);
+    color: var(--blanco);
+    font-weight: 600;
+}
+
+td {
+    overflow-wrap: break-word;
+}
+
+tbody tr:nth-child(even) {
+    background-color: var(--gris);
+}
+
+tbody tr:hover {
+    background-color: #d9eee1;
+}
+
+.estrellas {
+    margin-left: 6px;
+    color: #d4a017;
+    letter-spacing: 2px;
+}
+
+#tabla-campeones td:nth-child(2) {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+#tabla-mensajes td:nth-child(2) {
+    min-width: 150px;
+}
+
+#tabla-mensajes td:nth-child(5) {
+    min-width: 200px;
+    overflow-wrap: anywhere;
+}
+
+
+#form-contacto {
+    max-width: 640px;
+}
+
+fieldset {
+    margin: 0 0 24px;
+    padding: 18px 22px 4px;
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+}
+
+legend {
+    padding: 0 8px;
+    color: var(--verde-oscuro);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.campo {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--gris-medio);
+    border-radius: 6px;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+textarea {
+    min-height: 170px;
+    resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    background-color: #f3fbf7;
+    border-color: var(--verde);
+    box-shadow: 0 0 0 3px #b8e6d2;
+}
+
+.ayuda {
+    display: block;
+    margin-top: 5px;
+    color: var(--gris-texto);
+    font-size: 0.88rem;
+}
+
+button {
+    padding: 11px 28px;
+    background-color: var(--verde);
+    color: var(--blanco);
+    border: 0;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: var(--verde-oscuro);
+}
+
+button:active {
+    background-color: var(--oscuro);
+}
+
+
+.aviso {
+    margin-bottom: 22px;
+    padding: 18px 24px 6px;
+    border-left: 6px solid;
+    border-radius: 4px;
+}
+
+.exito {
+    background-color: #d9eee1;
+    border-color: var(--verde);
+}
+
+.error {
+    background-color: #ffdddd;
+    border-color: #f44336;
+}
+
+.informacion {
+    background-color: #ddffff;
+    border-color: #2196f3;
+}
+
+#total-mensajes {
+    display: inline-block;
+    padding: 6px 16px;
+    background-color: var(--gris);
+    border-radius: 20px;
+}
+
+
+.pie {
+    padding: 24px;
+    background-color: var(--oscuro);
+    color: var(--blanco);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.pie p {
+    margin: 4px 0;
+}
+
+.pie a {
+    color: #7fe0b8;
+}
+
+.pie a:hover {
+    color: var(--blanco);
+}
+
+
+@media (max-width: 860px) {
+    .cabecera {
+        flex-wrap: wrap;
+    }
+
+    .cabecera p {
+        flex-basis: 100%;
+        order: 3;
+    }
+
+    .cuerpo {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .menu {
+        display: none;
+    }
+
+    .cabecera {
+        padding: 12px 16px;
+    }
+
+    .cabecera h1 {
+        font-size: 1.5rem;
+    }
+
+    .contenido {
+        padding: 22px 18px;
+    }
+
+    .tarjeta {
+        flex: 1 1 calc(50% - 10px);
+        min-width: 0;
+    }
+
+    #bienvenida .intro,
+    #bienvenida figure {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .tarjeta {
+        flex-basis: 100%;
+    }
+
+    .barra a {
+        padding: 8px 12px;
+    }
+}

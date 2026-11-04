@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mundo Fútbol - Contacto</title>
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+<body>
+    <div class="contenedor">
+
+        <header class="cabecera">
+            <h1><a href="../index.html">Mundo Fútbol</a></h1>
+            <p>Escríbenos</p>
+            <a class="boton" href="contacto.html">Escríbenos</a>
+        </header>
+
+        <nav class="barra">
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="historia.html">Historia</a></li>
+                <li><a href="reglas.html">Reglas</a></li>
+                <li><a href="posiciones.html">Posiciones</a></li>
+                <li><a href="mundiales.html">Mundiales</a></li>
+                <li><a href="contacto.html" class="actual">Contacto</a></li>
+                <li><a href="mensajes.php">Mensajes</a></li>
+            </ul>
+        </nav>
+
+        <div class="cuerpo">
+
+            <nav class="menu">
+                <p>Temas del sitio</p>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="historia.html">Historia</a></li>
+                    <li><a href="reglas.html">Reglas</a></li>
+                    <li><a href="posiciones.html">Posiciones</a></li>
+                    <li><a href="mundiales.html">Mundiales</a></li>
+                    <li><a href="contacto.html" class="actual">Contacto</a></li>
+                    <li><a href="mensajes.php">Mensajes</a></li>
+                </ul>
+            </nav>
+
+            <main class="contenido">
+
+                <p class="pasos"><a class="boton secundario" href="mundiales.html">Anterior: Mundiales</a> <a class="boton" href="mensajes.php">Siguiente: Mensajes</a></p>
+
+                <section>
+                    <h2>Escríbenos un mensaje</h2>
+                    <p>
+                        ¿Tienes una pregunta, una sugerencia o quieres opinar sobre el sitio?
+                        Completa el formulario y tu mensaje quedará <strong>guardado en nuestra base de datos</strong>.
+                    </p>
+                    <p>Todos los campos marcados con <strong>*</strong> son obligatorios.</p>
+
+                    <form id="form-contacto" action="guardar_mensaje.php" method="POST">
+
+                        <fieldset>
+                            <legend>Datos personales</legend>
+
+                            <div class="campo">
+                                <label for="nombre">Nombre completo *</label>
+                                <input type="text" id="nombre" name="nombre" maxlength="100" required
+                                       autocomplete="name" placeholder="Ej.: Ana María Torres Vega">
+                                <small class="ayuda">Máximo 100 caracteres.</small>
+                            </div>
+
+                            <div class="campo">
+                                <label for="correo">Correo electrónico *</label>
+                                <input type="email" id="correo" name="correo" maxlength="150" required
+                                       autocomplete="email" placeholder="Ej.: ana.torres@correo.com">
+                                <small class="ayuda">Debe tener un formato válido. Máximo 150 caracteres.</small>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Tu mensaje</legend>
+
+                            <div class="campo">
+                                <label for="asunto">Asunto *</label>
+                                <input type="text" id="asunto" name="asunto" maxlength="150" required
+                                       placeholder="Ej.: Sugerencia para la página de Mundiales">
+                                <small class="ayuda">Máximo 150 caracteres.</small>
+                            </div>
+
+                            <div class="campo">
+                                <label for="mensaje">Mensaje *</label>
+                                <textarea id="mensaje" name="mensaje" rows="8" maxlength="2000" required
+                                          placeholder="Escribe aquí tu mensaje..."></textarea>
+                                <small class="ayuda">Máximo 2000 caracteres.</small>
+                            </div>
+                        </fieldset>
+
+                        <button type="submit" id="enviar" name="enviar">Enviar mensaje</button>
+                    </form>
+                </section>
+
+                <section>
+                    <h2>Preguntas frecuentes</h2>
+
+                    <article>
+                        <h3>¿Me van a responder por correo?</h3>
+                        <p>
+                            No. Este sitio <strong>no envía correos</strong>: tu mensaje solo se guarda en la base
+                            de datos y se puede consultar en la página de Mensajes.
+                        </p>
+                    </article>
+
+                    <article>
+                        <h3>¿Qué pasa si me equivoco en un dato?</h3>
+                        <p>
+                            El servidor revisa cada campo antes de guardar. Si algo está mal, el mensaje
+                            <em>no se guarda</em> y se te indica qué corregir.
+                        </p>
+                    </article>
+                </section>
+
+                <aside>
+                    <h2>¿Qué pasa con tu mensaje?</h2>
+                    <ol>
+                        <li>El formulario envía tus datos por el método POST.</li>
+                        <li>El servidor revisa que todos los campos sean correctos.</li>
+                        <li>Si todo está bien, el mensaje se guarda en la base de datos.</li>
+                        <li>Puedes ver todos los mensajes en la página de Mensajes.</li>
+                    </ol>
+                    <p><a class="boton" href="mensajes.php">Ver los mensajes</a></p>
+                </aside>
+
+                <p class="pasos"><a class="boton secundario" href="mundiales.html">Anterior: Mundiales</a> <a class="boton" href="mensajes.php">Siguiente: Mensajes</a></p>
+
+            </main>
+        </div>
+
+        <footer class="pie">
+            <p>Sitio desarrollado por <strong>Erick Bermeo</strong> en Cuenca, Ecuador.</p>
+            <p>Correo: <a href="mailto:ebermeol1@est.ups.edu.ec">ebermeol1@est.ups.edu.ec</a></p>
+            <p>&copy; 2026 Mundo Fútbol. Todos los derechos reservados.</p>
+        </footer>
+
+    </div>
+</body>
+</html>
