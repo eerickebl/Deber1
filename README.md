@@ -36,7 +36,7 @@ El sitio tiene el aspecto de una página de tutoriales: una cabecera blanca con 
 ## Estructura del proyecto
 
 ```
-mundo-futbol/
+Deber1/
 ├── index.html                  Página principal
 ├── README.md
 ├── css/
@@ -52,10 +52,8 @@ mundo-futbol/
 │   └── mensajes.php            Consulta de mensajes
 ├── php/
 │   └── conexion.php            Datos y función de conexión (Modelo)
-├── database/
-│   └── mundo_futbol.sql        Script para crear la base de datos
-└── pruebas/
-    └── datos_prueba.txt        Datos ficticios para los casos P1–P8
+└── database/
+    └── mundo_futbol.sql        Script para crear la base de datos
 ```
 
 ## Base de datos
@@ -75,7 +73,7 @@ Base de datos `mundo_futbol` (utf8mb4) con la tabla `mensajes`:
 
 1. **Copia el proyecto** a la carpeta `htdocs` de XAMPP:
    ```
-   C:\xampp\htdocs\mundo-futbol\
+   C:\xampp\htdocs\Deber1\
    ```
 2. **Inicia los servicios:** abre el *XAMPP Control Panel* y presiona **Start** en **Apache** y en **MySQL**.
 3. **Crea la base de datos:**
@@ -85,7 +83,7 @@ Base de datos `mundo_futbol` (utf8mb4) con la tabla `mensajes`:
    4. Verifica que aparezca la base de datos `mundo_futbol` con la tabla `mensajes`.
 4. **Abre el sitio:**
    ```
-   http://localhost/mundo-futbol/
+   http://localhost/Deber1/
    ```
 5. **Prueba el formulario:** entra a **Contacto**, envía un mensaje y revísalo en **Mensajes**.
 
@@ -119,7 +117,7 @@ ngrok crea un enlace público temporal hacia tu Apache local, para abrir el siti
    Si tu Apache usa otro puerto (por ejemplo `8080`), usa ese número.
 4. Copia la dirección de la línea **Forwarding** y agrégale el nombre de la carpeta:
    ```
-   https://xxxx-xxxx.ngrok-free.app/mundo-futbol/
+   https://xxxx-xxxx.ngrok-free.app/Deber1/
    ```
 5. La primera vez, ngrok muestra una página de aviso. Presiona **Visit Site**.
 6. Para terminar, presiona `Ctrl + C` en la ventana de ngrok. El enlace cambia cada vez que lo vuelves a ejecutar.
@@ -130,12 +128,11 @@ Todas las rutas del sitio son relativas, por eso funciona igual en `localhost` y
 
 ## Pruebas (P1–P8)
 
-El archivo `pruebas/datos_prueba.txt` contiene:
+Las pruebas se hacen a mano con datos ficticios. Para comprobar que **PHP** también rechaza los datos inválidos (P5–P7), se desactivan las restricciones del navegador pegando esta línea en la **Consola** (F12) de la página de Contacto:
 
-- los tres mensajes válidos para **P4**,
-- los correos inválidos para **P6**,
-- los textos con un carácter de más para **P7** (nombre 101, correo 151, asunto 151 y mensaje 2001 caracteres),
-- la línea que se pega en la **Consola** del navegador (F12) para desactivar temporalmente `required`, `type="email"` y `maxlength`, y así comprobar que **PHP** también rechaza los datos.
+```js
+document.getElementById('form-contacto').noValidate = true; document.querySelectorAll('[maxlength]').forEach(c => c.removeAttribute('maxlength'));
+```
 
 Para repetir las pruebas desde cero (P3 necesita la tabla vacía), ejecuta en phpMyAdmin, pestaña SQL:
 
@@ -147,5 +144,6 @@ TRUNCATE TABLE mundo_futbol.mensajes;
 
 - **Consultas preparadas** (`prepare` y `bind_param`): los datos nunca se pegan dentro del SQL, lo que evita la inyección SQL.
 - **`htmlspecialchars`** al imprimir: si alguien escribe etiquetas HTML, se muestran como texto y no se ejecutan.
+- **Correo con dominio real:** además del formato, PHP consulta en internet (DNS, con `checkdnsrr`) que el dominio del correo exista y reciba correos. Así se rechazan correos inventados como `ana@asdfqwer.com`. Por eso la PC necesita conexión a internet para guardar mensajes.
 - **Validación doble:** en el navegador (`required`, `type="email"` y `maxlength`) y en el servidor con PHP, que es la que realmente protege. Además, la base de datos tiene restricciones `CHECK`.
 - **Errores controlados:** si MySQL falla, el usuario ve un mensaje comprensible y nunca una confirmación falsa.
