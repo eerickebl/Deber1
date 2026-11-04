@@ -126,19 +126,6 @@ ngrok crea un enlace público temporal hacia tu Apache local, para abrir el siti
 
 Todas las rutas del sitio son relativas, por eso funciona igual en `localhost` y en ngrok.
 
-## Pruebas (P1–P8)
-
-Las pruebas se hacen a mano con datos ficticios. Para comprobar que **PHP** también rechaza los datos inválidos (P5–P7), se desactivan las restricciones del navegador pegando esta línea en la **Consola** (F12) de la página de Contacto:
-
-```js
-document.getElementById('form-contacto').noValidate = true; document.querySelectorAll('[maxlength]').forEach(c => c.removeAttribute('maxlength'));
-```
-
-Para repetir las pruebas desde cero (P3 necesita la tabla vacía), ejecuta en phpMyAdmin, pestaña SQL:
-
-```sql
-TRUNCATE TABLE mundo_futbol.mensajes;
-```
 
 ## Seguridad aplicada
 
